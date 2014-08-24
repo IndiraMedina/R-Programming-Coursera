@@ -1,11 +1,11 @@
 ################################ THE PROBLEM######################################
 ## Some computations can be time consuming. 					        ##
 ## For example, calculating the inverse of a matrix might take too		  ##
-## long to comute, specially if it is a big matrix, or if it has to		  ## 
+## long to comute, specially if it is a big matrix, or if it has to		  ##
 ## be computed repeatedly in a loop. 							  ##
 ##################################################################################
 
-############################### THE SOLUTION ##################################### 
+############################### THE SOLUTION #####################################
 ## It is possible to cache the output of a function if its argument don't	  ##
 ## change, or if its output will be needed after it is calculated, 	 	  ##
 ## but before the function is used again.						  	  ##
@@ -13,19 +13,19 @@
 
 ############################### EXAMPLE ##########################################
 ## If the contents of a matrix to be inverted are not changing, it is 	  	  ##
-## possible to cache the value of its inverse matrix, in a way that when  	  ## 
+## possible to cache the value of its inverse matrix, in a way that when  	  ##
 ## needed, it can be used from cache rather than computed, taking 	  	  ##
 ## advantage of the scooping rooles of R.						  	  ##
 ## Here an example of two functions, "makeCacheMatrix" and "cacheSolve",  	  ##
 ## that are used to store a matrix and cache its inverse. 			  	  ##
 ##################################################################################
- 
+
 ############################# makeCacheMatrix function ###########################
 ## makeCacheMatrix takes a matrix as argument to create a list containing:      ##
 ## 1. "get" > a function to retrieve the matrix to be inverted 	  	  	  ##
 ## 2. "setInvMatrix" > a function to store the inverse output of "cache solve"  ##
 ## 3. "getInvMatrix" > a function retrieve the inverse matrix		        ##
-################################################################################## 
+##################################################################################
 
 makeCacheMatrix <- function(x = matrix()) {
 	IM <- NULL ## Resets the value of IM to NULL each time the  function is run
@@ -50,7 +50,7 @@ makeCacheMatrix <- function(x = matrix()) {
 ##	1. Retrieves the original matrix using x$get. 					  ##
 ##	2. Uses "solve" to calculate the inverse matrix. 				  ##
 ## 	3. Assigns the inverse matrix to IM (in makeCacheMatrix) 			  ##
-## 	4. Gives the inverse matrix as output.					  	  ## 
+## 	4. Gives the inverse matrix as output.					  	  ##
 ##################################################################################
 
 
