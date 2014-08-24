@@ -6,7 +6,7 @@
 ####################################################################################
 
 ############################### THE SOLUTION #######################################
-## It is possible to cache the output of a function if its argument don't	  ##
+## It is possible to cache the output of a function if its arguments don't	  ##
 ## change, or if its output will be needed after it is calculated, 	 	  ##
 ## but before the function is used again.					  ##
 ####################################################################################
@@ -30,9 +30,9 @@
 makeCacheMatrix <- function(x = matrix()) {
 	IM <- NULL ## Resets the value of IM to NULL each time the  function is run
       get <- function() x ## creates a function that retrieves the matrix argument
-      setInvMatrix <- function(InvMatrix) IM <<- InvMatrix ## asign InvMatrix to IM
+      setInvMatrix <- function(InvMatrix) IM <<- InvMatrix ## assigns InvMatrix to IM
       getInvMatrix <- function() IM ## function to retrieve the inverse matrix IM
-      list(get = get,					## sets the functions in a list
+      list(get = get,			## sets the output functions in a list
            setInvMatrix = setInvMatrix,
            getInvMatrix = getInvMatrix)
 }
@@ -56,13 +56,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 cacheSolve <- function(x, ...) {
-	IM <- x$getInvMatrix() 	## assigns the inverse matrix from "makeCacheMatrix".
+	IM <- x$getInvMatrix() 	## gets the inverse matrix from "makeCacheMatrix".
       if(!is.null(IM)) {	## if IM is not NULL, 
       	message("getting cached data") ## displays message 
             return(IM) ## retrieves IM from "makeCacheMatrix"
         }
-        data <- x$get() ## retrieves the original matrix from "makeCacheMatrix"
-        IM <- solve(data, ...) ## calculate the inverse of the matrix.
+        data <- x$get() ## gets the original matrix from "makeCacheMatrix"
+        IM <- solve(data, ...) ## calculates the inverse of the matrix.
         x$setInvMatrix(IM) ## sets the inverse matrix into "makeCacheMatrix"
         IM ## retrieves IM from the previous calculation
 }
