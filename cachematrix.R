@@ -32,7 +32,7 @@ makeCacheMatrix <- function(x = matrix()) {
       get <- function() x ## creates a function that retrieves the matrix argument
       setInvMatrix <- function(InvMatrix) IM <<- InvMatrix ## asign InvMatrix to IM
       getInvMatrix <- function() IM ## function to retrieve the inverse matrix IM
-      list(get = get,					## sets the 3 functions in a list
+      list(get = get,					## sets the functions in a list
            setInvMatrix = setInvMatrix,
            getInvMatrix = getInvMatrix)
 }
@@ -48,7 +48,8 @@ makeCacheMatrix <- function(x = matrix()) {
 ##										  ##
 ## If no inverse matrix is found, "cacheSolve": 				  ##
 ##	1. Retrieves the original matrix using x$get. 				  ##
-##	2. Uses "solve" to calculate the inverse matrix. 			  ##
+##	2. Uses "solve" to calculate the inverse matrix.			  ##
+##	   "cacheSolve" assumes that the matrix supplied is always invertible	  ##
 ## 	3. Assigns the inverse matrix to IM (in makeCacheMatrix) 		  ##
 ## 	4. Gives the inverse matrix as output.					  ##
 ####################################################################################
@@ -61,7 +62,7 @@ cacheSolve <- function(x, ...) {
             return(IM) ## retrieves IM from "makeCacheMatrix"
         }
         data <- x$get() ## retrieves the original matrix from "makeCacheMatrix"
-        IM <- solve(data, ...) ## calculate the inverse of the matrix
+        IM <- solve(data, ...) ## calculate the inverse of the matrix.
         x$setInvMatrix(IM) ## sets the inverse matrix into "makeCacheMatrix"
         IM ## retrieves IM from the previous calculation
 }
